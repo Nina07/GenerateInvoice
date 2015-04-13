@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html>
 <center>
+<div style="width:290px;height:280px;border:1px solid black;">
 <h2>Invoice</h2>
-    <head>
-    <meta name="imgkit-crop-h" content="990">
-    <meta name="imgkit-crop-w" content="635">
-    </head>
-
+   
 <p><% @orders.each do |data| %>
  	<strong>Order No:</strong>
  	<%= data.order_no %>

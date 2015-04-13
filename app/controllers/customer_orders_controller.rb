@@ -23,12 +23,13 @@ class CustomerOrdersController < ApplicationController
   def new
     @orders = CustomerOrder.all
     @items = Item.all
-    kit = IMGKit.new(render :new)
-    return
-    kit.to_jpg
-    @kit = IMGKit.new(render_as_string)
-    #img = @kit.to_img(:jpg)
-    send_data(@kit.to_jpg, :type => "image/jpeg", :disposition => 'inline')
+    @count = Item.count(:qty)
+    @temp = Item.where(:received => 1).count()
+    @kit = IMGKit.new(render_to_string(:layout => "customer_orders/new", :layout => false),
+                                      width: 300, height: 340)
+    img = @kit.to_jpg
+    send_data(img, :type => "image/jpeg", :disposition => 'inline')
+      return
   end
 
   # GET /customer_orders/1/edit
